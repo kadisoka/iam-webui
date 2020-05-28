@@ -3,32 +3,11 @@
     <div class="content">
       <div>
         <nuxt />
-        <div>Home</div>
+        <div class="simple-footer">Home</div>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      items: [
-        {
-          title: 'Home',
-          icon: 'home',
-          to: { name: 'index' }
-        },
-        {
-          title: 'Inspire',
-          icon: 'lightbulb',
-          to: { name: 'inspire' }
-        }
-      ]
-    }
-  }
-}
-</script>
 
 <style>
 .layout-mono > div.content {
@@ -38,5 +17,9 @@ export default {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
+}
+.layout-mono .simple-footer {
+  text-align: initial;
+  padding: 1rem 0.75rem;
 }
 </style>

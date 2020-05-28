@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <p class="card-header-title">TODO: LOGO</p>
+      <p class="card-header-title">{{ $appCore.appName }}</p>
     </div>
     <div class="card-content">
       <h2>
