@@ -23,7 +23,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@/assets/main.scss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -47,6 +47,7 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  buefy: { css: false },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -59,6 +60,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {},
+    optimizeCSS: true
   }
 }
