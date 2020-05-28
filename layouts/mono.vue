@@ -3,7 +3,7 @@
     <div class="content">
       <div>
         <nuxt />
-        <div class="simple-footer">Home</div>
+        <div class="simple-footer"><a href="/">Home</a></div>
       </div>
     </div>
   </div>
@@ -19,7 +19,9 @@
   align-items: center;
 }
 .layout-mono .simple-footer {
+  font-size: smaller;
   text-align: initial;
   padding: 1rem 0.75rem;
+  color: hsl(0, 0%, 48%);
 }
 </style>
