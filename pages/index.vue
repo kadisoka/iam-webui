@@ -1,17 +1,16 @@
-<template></template>
+<template>
+  <div>
+    <h1>{{ $appCore.appName }}</h1>
+  </div>
+</template>
 
 <script>
-import Card from '~/components/Card'
-
 export default {
-  name: 'HomePage',
-
-  mounted: function() {
-    console.log(this)
-  },
-
-  components: {
-    Card
+  head() {
+    console.log(process.env)
+    return {
+      title: this.$appCore.appName + ' Home'
+    }
   }
 }
 </script>

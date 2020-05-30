@@ -1,13 +1,13 @@
 export default ({ app }, inject) => {
   const iamClient = {
-    serverBaseUrl: 'http://localhost:11121/iam/restv1',
+    restBaseUrl: 'http://localhost:11121/iam/restv1',
     clientId: 'cl-0x27223700',
     clientSecret: 'RArhJhZIfBWHlfjcA2_FSw',
 
     async fetchUserInfo() {
       app.$axios.setToken(app.store.state.iam.accessToken, 'Bearer')
       return app.$axios.$get(
-        this.serverBaseUrl + '/users/me/openidconnect-userinfo'
+        this.restBaseUrl + '/users/me/openidconnect-userinfo'
       )
     }
   }

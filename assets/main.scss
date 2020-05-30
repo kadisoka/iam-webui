@@ -48,5 +48,13 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
+$family-primary: 'Manrope', $family-primary;
+
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
+
+h1,
+h2 {
+  font-weight: 400 !important;
+  font-family: 'DM Sans', $family-primary;
+}

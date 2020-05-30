@@ -1,8 +1,5 @@
 <template>
   <div class="card">
-    <div class="card-header">
-      <p class="card-header-title">{{ $appCore.appName }}</p>
-    </div>
     <div class="card-content">
       <h2>
         Confirm verification
@@ -59,7 +56,7 @@ export default {
 
       this.$axios
         .$post(
-          this.$appCore.iamClient.serverBaseUrl + '/oauth/token',
+          this.$appCore.iamClient.restBaseUrl + '/oauth/token',
           qs.stringify({
             grant_type: 'authorization_code',
             code:
