@@ -1,18 +1,21 @@
 <template>
-  <div class="container">
-    <p>Logging out...</p>
+  <div class="card">
+    <div class="card-content">
+      <p>Signing out...</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  layout: 'nodeco',
+  layout: 'mono',
   head() {
     return {
       title: 'Sign Out - ' + this.$appCore.appName
     }
   },
   mounted: function() {
+    //TODO: revoke authorization ID
     this.$store.commit('iam/terminateSession')
     this.$router.replace('/')
   }

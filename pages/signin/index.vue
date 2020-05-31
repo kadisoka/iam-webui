@@ -1,6 +1,8 @@
 <template>
-  <div class="container">
-    <p>Redirecting...</p>
+  <div class="card">
+    <div class="card-content">
+      <p>Redirecting...</p>
+    </div>
   </div>
 </template>
 

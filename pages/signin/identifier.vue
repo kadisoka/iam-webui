@@ -1,23 +1,21 @@
 <template>
-  <div>
-    <div class="card">
-      <div class="card-content">
-        <h2>
-          Sign in
-        </h2>
-        <form id="signin-identifier-form" @submit="onSubmit">
-          <b-field label="Email or phone">
-            <b-input
-              id="signin-identifier-form-input-identifier"
-              v-model="formData.emailAddress"
-              placeholder="user@example.com"
-            ></b-input>
-          </b-field>
-          <div class="buttons is-right">
-            <button class="button is-primary" type="submit">Next</button>
-          </div>
-        </form>
-      </div>
+  <div class="card">
+    <div class="card-content">
+      <h2>
+        Sign in
+      </h2>
+      <form id="signin-identifier-form" @submit="onSubmit">
+        <b-field label="Email or phone">
+          <b-input
+            id="signin-identifier-form-input-identifier"
+            v-model="formData.emailAddress"
+            placeholder="user@example.com"
+          ></b-input>
+        </b-field>
+        <div class="buttons is-right">
+          <button class="button is-primary" type="submit">Next</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>

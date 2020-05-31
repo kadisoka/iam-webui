@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <h1>Account Settings</h1>
     <section>
       <form id="settings-account-email-address-form" @submit="onSubmit">
