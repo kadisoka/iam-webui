@@ -1,7 +1,7 @@
 export default ({ app }, inject) => {
   const iamClient = {
     restBaseUrl: 'http://localhost:11121/iam/restv1',
-    clientId: 'cl-0x27223700',
+    clientId: 'CUA0T11xq3e',
     clientSecret: 'RArhJhZIfBWHlfjcA2_FSw',
 
     async fetchUserInfo() {
