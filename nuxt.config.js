@@ -62,7 +62,8 @@ export default {
   ],
   plugins: [
     { src: '~/plugins/vuex-persist', ssr: false },
-    { src: '~/plugins/app-core', ssr: false }
+    { src: '~/plugins/app-core', ssr: false },
+    { src: '~/plugins/iam-client', ssr: false }
   ],
   router: {
     // Why some long path? We need this path to be pretty unique because

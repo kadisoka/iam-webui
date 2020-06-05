@@ -19,6 +19,7 @@
 }
 .layout-mono .card {
   min-width: 440px;
+  border-radius: 6px;
 }
 .layout-mono .card > .card-content {
   padding: 2rem;

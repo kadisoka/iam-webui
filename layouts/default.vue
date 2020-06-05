@@ -13,7 +13,7 @@
           >Account</b-navbar-item
         >
         <b-navbar-item
-          v-if="$store.state.iam.accessToken"
+          v-if="$iamClient.isLoggedIn()"
           to="/signout"
           tag="router-link"
           >Sign out</b-navbar-item

@@ -19,7 +19,7 @@ export default {
   mounted: function() {
     const router = this.$router
     const route = this.$route
-    if (this.$store.state.iam.accessToken) {
+    if (this.$iamClient.isLoggedIn()) {
       const redirectUri = route.query['redirect_uri']
       if (redirectUri) {
         //TODO: redirect

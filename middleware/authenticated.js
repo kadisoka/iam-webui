@@ -1,7 +1,7 @@
 import qs from 'querystring'
 
-export default function({ store, route, redirect }) {
-  if (!store.state.iam.accessToken) {
+export default function({ app, route, redirect }) {
+  if (!app.$iamClient.isLoggedIn()) {
     var queryStr = ''
     if (route.query.client_id) {
       //TODO: redirect to IAM root and let it decide how to continue.

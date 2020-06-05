@@ -1,19 +1,22 @@
 export const state = () => ({
-  accessToken: '',
   terminalId: '',
+  accountIdentifier: '',
+  accessToken: '',
   userInfo: null
 })
 
 export const mutations = {
-  startTerminalRegistration(state, terminalId) {
+  startTerminalRegistration(state, { terminalId, accountIdentifier }) {
     state.terminalId = terminalId
+    state.accountIdentifier = accountIdentifier
   },
   storeAccessToken(state, accessToken) {
     state.accessToken = accessToken
   },
   terminateSession(state) {
-    state.accessToken = ''
     state.terminalId = ''
+    state.accountIdentifier = ''
+    state.accessToken = ''
     state.userInfo = null
   },
   updateUserInfo(state, userInfo) {

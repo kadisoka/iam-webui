@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" ref="cardRef">
     <div class="card-content">
       <h2>
         Sign in
@@ -9,7 +9,7 @@
           <b-input
             id="signin-identifier-form-input-identifier"
             v-model="formData.emailAddress"
-            placeholder="user@example.com"
+            placeholder="Email or phone"
           ></b-input>
         </b-field>
         <div class="buttons is-right">
@@ -35,44 +35,41 @@ export default {
   data() {
     return {
       formData: {
-        emailAddress: ''
-      },
-      show: true
+        emailAddress: this.$iamClient.getAccountIdentifier()
+      }
     }
   },
   mounted: function() {},
   methods: {
     async onSubmit(evt) {
       evt.preventDefault()
-      await this.$axios
-        .$post(
-          this.$appCore.iamClient.restBaseUrl + '/terminals/register',
-          {
-            verification_methods: ['none'],
-            verification_resource_type: 'email-address',
-            verification_resource_name: this.formData.emailAddress
-          },
-          {
-            auth: {
-              username: this.$appCore.iamClient.clientId,
-              password: this.$appCore.iamClient.clientSecret
-            }
+
+      const loadingOverlay = this.$buefy.loading.open({
+        container: this.$refs.cardRef
+      })
+
+      await this.$iamClient
+        .startTerminalAuthorization(this.formData.emailAddress, null)
+        .then(() => {
+          loadingOverlay.close()
+          this.$router.push('/signin/otp?' + qs.stringify(this.$route.query))
+        })
+        .catch((err) => {
+          loadingOverlay.close()
+          if (err.code === 'arg_error') {
+            this.$buefy.snackbar.open({
+              message: 'Input error',
+              type: 'is-danger',
+              position: 'is-top'
+            })
+          } else {
+            this.$buefy.snackbar.open({
+              message: 'Server error',
+              type: 'is-warning',
+              position: 'is-top'
+            })
           }
-        )
-        .then(
-          (resp) => {
-            this.$store.commit(
-              'iam/startTerminalRegistration',
-              resp.terminal_id
-            )
-            this.$router.push(
-              '/signin/otpinput?' + qs.stringify(this.$route.query)
-            )
-          },
-          (err) => {
-            console.log(err)
-          }
-        )
+        })
     }
   }
 }
