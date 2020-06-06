@@ -48,7 +48,7 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
-$family-primary: 'Manrope', $family-primary;
+$family-primary: 'Helvetica Neue', 'Helvetica', 'Roboto', sans-serif;
 
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
@@ -56,5 +56,5 @@ $family-primary: 'Manrope', $family-primary;
 h1,
 h2 {
   font-weight: 400 !important;
-  font-family: 'DM Sans', $family-primary;
+  font-family: 'Source Sans Pro', $family-primary;
 }
