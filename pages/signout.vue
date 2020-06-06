@@ -15,9 +15,11 @@ export default {
     }
   },
   mounted: function() {
-    //TODO: revoke authorization ID
+    //TODO: revoke authorization / access token
+    // note that we must not only revoke an instance of authorization,
+    // we must revoke the terminal
     this.$store.commit('iam/terminateSession')
-    this.$router.replace('/')
+    location.href = '/'
   }
 }
 </script>
