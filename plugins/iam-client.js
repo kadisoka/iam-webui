@@ -16,7 +16,7 @@ export default ({ app }, inject) => {
       )
     },
 
-    async startTerminalAuthorization(accountIdentifier, verificationMethods) {
+    startTerminalAuthorization(accountIdentifier, verificationMethods) {
       return new Promise((resolve, reject) => {
         app.$axios
           .$post(
@@ -35,26 +35,26 @@ export default ({ app }, inject) => {
           .then((resp) => {
             app.store.commit('iam/startTerminalRegistration', {
               terminalId: resp.terminal_id,
-              accountIdentifier: accountIdentifier
+              accountIdentifier
             })
             resolve()
           })
           .catch((err) => {
-            //TODO: translate it (map the fields)
+            // TODO: translate it (map the fields)
             if (
               err.response &&
               err.response.status >= 400 &&
               err.response.status <= 499
             ) {
-              reject({ code: 'arg_error' })
+              reject(new Error('arg_error'))
             } else {
-              reject({ code: 'server_error' })
+              reject(new Error('server_error'))
             }
           })
       })
     },
 
-    async confirmTerminalAuthorization(otp) {
+    confirmTerminalAuthorization(otp) {
       return new Promise((resolve, reject) => {
         app.$axios
           .$post(
@@ -86,25 +86,25 @@ export default ({ app }, inject) => {
             },
             (err) => {
               if (err.response) {
-                if (err.response.status == 400) {
+                if (err.response.status === 400) {
                   if (
                     err.response.data.error === 'invalid_grant' &&
                     err.response.data.error_description === 'expired'
                   ) {
-                    reject({ code: 'arg_expired' })
+                    reject(new Error('arg_expired'))
                     return
                   }
-                  reject({ code: 'arg_error' })
+                  reject(new Error('arg_error'))
                   return
                 }
               }
-              reject({ code: 'server_error' })
+              reject(new Error('server_error'))
             }
           )
       })
     },
-    async fetchUserInfo() {
-      //TODO: ensure we have valid access token
+    fetchUserInfo() {
+      // TODO: ensure we have valid access token
       app.$axios.setToken(app.store.state.iam.accessToken, 'Bearer')
       return app.$axios.$get(
         this.restBaseUrl + '/users/me/openidconnect-userinfo'

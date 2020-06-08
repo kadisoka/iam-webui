@@ -1,9 +1,7 @@
 <template>
-  <div class="card">
-    <div class="card-content">
-      <p>Redirecting...</p>
-    </div>
-  </div>
+  <v-card outlined>
+    <v-card-text>Redirecting... </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -12,15 +10,15 @@ import qs from 'querystring'
 export default {
   layout: 'mono',
   middleware: 'nonAuthenticated',
-  head() {
-    return {
-      title: 'Sign In - ' + this.$appCore.appName
-    }
-  },
-  mounted: function() {
+  mounted() {
     this.$router.replace(
       '/signin/identifier?' + qs.stringify(this.$route.query)
     )
+  },
+  head() {
+    return {
+      title: 'Sign In'
+    }
   }
 }
 </script>

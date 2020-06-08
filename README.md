@@ -1,6 +1,6 @@
 # iam-webui
 
-> Citadel IAM Web UI
+> Citadel IAM web UI
 
 ## Build Setup
 

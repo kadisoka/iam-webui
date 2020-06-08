@@ -1,42 +1,56 @@
 <template>
-  <div>
-    <b-navbar
-      class="header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <template slot="brand">
-        <b-navbar-item href="/">{{ $appCore.appName }}</b-navbar-item>
-      </template>
-      <template slot="end">
-        <b-navbar-item to="/settings/account" tag="router-link"
-          >Account</b-navbar-item
-        >
-        <b-navbar-item
-          v-if="$iamClient.isLoggedIn()"
-          to="/signout"
-          tag="router-link"
-          >Sign out</b-navbar-item
-        >
-        <b-navbar-item v-else to="/signin" tag="router-link"
-          >Sign in</b-navbar-item
-        >
-      </template>
-    </b-navbar>
+  <v-app class="default-layout">
+    <v-app-bar :clipped-left="clipped" fixed flat app>
+      <a href="/" class="app-logo"><v-toolbar-title v-text="title"/></a>
+      <v-spacer />
+      <v-menu left bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
 
-    <main class="content columns" role="main">
-      <div class="container column is-10">
+        <v-list>
+          <v-list-item to="/settings">
+            <v-list-item-title>Account Settings</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="$iamClient.isLoggedIn()" to="/signout">
+            <v-list-item-title>Sign out</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-else to="/signin">
+            <v-list-item-title>Sign in</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
+    <v-content fluid>
+      <v-container>
         <nuxt />
-      </div>
-    </main>
-  </div>
+      </v-container>
+    </v-content>
+    <v-footer app absolute class="caption">
+      <span>&copy; {{ $appCore.appName }}</span>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-main.content {
-  padding: 3rem 1.5rem;
+<script>
+export default {
+  data() {
+    return {
+      title: this.$appCore.appName
+    }
+  },
+  head() {
+    return {
+      title: 'Home'
+    }
+  }
 }
-.navbar-brand {
-  font-weight: bolder;
+</script>
+
+<style lang="scss">
+.default-layout .v-app-bar a {
+  text-decoration: none;
 }
 </style>

@@ -1,0 +1,17 @@
+.v-btn {
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+}
+.v-btn--contained {
+  box-shadow: none !important;
+}
+
+.v-card > .v-card__title > h1 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.app-logo {
+  font-family: $heading-font-family;
+}
