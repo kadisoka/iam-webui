@@ -29,7 +29,6 @@ jobs:
     - run: node --version
     - run: yarn --version
     - run: yarn install
-    - uses: actions/cache@v2
 
     - run: yarn build
 
