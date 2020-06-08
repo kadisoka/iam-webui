@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: build
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -26,6 +26,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14'
-
     - run: node --version
     - run: yarn --version
+    - run: yarn install
+    - uses: actions/cache@v2
+
+    - run: yarn build
+
