@@ -4,8 +4,8 @@
       <a href="/" class="app-logo"><v-toolbar-title v-text="title"/></a>
       <v-spacer />
       <v-menu left bottom>
-        <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
