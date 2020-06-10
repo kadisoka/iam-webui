@@ -1,9 +1,8 @@
 name: release
 
 on:
-  push:
-    tags:
-    - 'v*'
+  release:
+    type: [created]
 
 jobs:
   build:
@@ -19,21 +18,16 @@ jobs:
       - run: yarn build
       - run: mv dist citadel-iam-webui
       - run: zip -r citadel-iam-webui.zip citadel-iam-webui
-      - id: create_release
-        uses: actions/create-release@v1
+      - id: get_release
+        uses: bruceadams/get-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: true
-          prerelease: false
-      - id: upload-release-asset 
+      - id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: ./citadel-iam-webui.zip
           asset_name: citadel-iam-webui-${{ github.ref }}.zip
           asset_content_type: application/zip
