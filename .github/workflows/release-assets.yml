@@ -29,5 +29,5 @@ jobs:
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: ./citadel-iam-webui.zip
-          asset_name: citadel-iam-webui-${GITHUB_REF#refs/tags/}.zip
+          asset_name: citadel-iam-webui-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
