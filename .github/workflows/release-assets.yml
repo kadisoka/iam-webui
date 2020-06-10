@@ -19,7 +19,7 @@ jobs:
       - run: mv dist citadel-iam-webui
       - run: zip -r citadel-iam-webui.zip citadel-iam-webui
       - id: get_release
-        uses: bruceadams/get-release@v1
+        uses: bruceadams/get-release@v1.2.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - id: upload-release-asset
