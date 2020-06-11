@@ -2,24 +2,24 @@ name: build
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14'
-    - run: node --version
-    - run: yarn --version
-    - run: yarn install
-    - run: yarn build
-    - uses: actions/upload-artifact@v2
-      with:
-        name: citadel-iam-webui
-        path: dist
-
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - run: node --version
+      - run: yarn --version
+      - run: yarn install
+      - run: yarn build
+      - run: echo "${{ github.sha }}" >> dist/VERSION
+      - uses: actions/upload-artifact@v2
+        with:
+          name: citadel-iam-webui
+          path: dist

@@ -16,6 +16,8 @@ jobs:
       - run: yarn --version
       - run: yarn install
       - run: yarn build
+      - run: echo "${{ github.event.release.tag_name }}" > dist/VERSION
+      - run: echo "${{ github.sha }}" >> dist/VERSION
       - run: mv dist citadel-iam-webui
       - run: zip -r citadel-iam-webui.zip citadel-iam-webui
       - id: get_release
