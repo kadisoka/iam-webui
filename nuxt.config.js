@@ -3,7 +3,7 @@ import colors from 'vuetify/es5/util/colors'
 // Why some long path? We need this path to be pretty unique because
 // we would replace this string with anything we configure when serving
 // the produced files.
-const routeBasePath = '/citadel-iam-webui-base-path'
+const routeBasePath = '/kadisoka-iam-webui-base-path'
 
 export default {
   build: {

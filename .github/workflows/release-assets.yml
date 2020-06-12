@@ -18,8 +18,8 @@ jobs:
       - run: yarn build
       - run: echo "${{ github.event.release.tag_name }}" > dist/VERSION
       - run: echo "${{ github.sha }}" >> dist/VERSION
-      - run: mv dist citadel-iam-webui
-      - run: zip -r citadel-iam-webui.zip citadel-iam-webui
+      - run: mv dist kadisoka-iam-webui
+      - run: zip -r kadisoka-iam-webui.zip kadisoka-iam-webui
       - id: get_release
         uses: bruceadams/get-release@v1.2.0
         env:
@@ -30,6 +30,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./citadel-iam-webui.zip
-          asset_name: citadel-iam-webui-${{ github.event.release.tag_name }}.zip
+          asset_path: ./kadisoka-iam-webui.zip
+          asset_name: kadisoka-iam-webui-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip

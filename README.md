@@ -1,6 +1,6 @@
 # iam-webui
 
-> Citadel IAM web UI
+> Kadisoka IAM web UI
 
 ## Build Setup
 

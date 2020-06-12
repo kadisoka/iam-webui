@@ -33,6 +33,11 @@
             type="text"
           ></v-text-field>
         </v-form>
+        <p>
+          Don't have any account? Fill in and submit this form with your
+          preferred identifier and we will set up your account later (click here
+          for the terms and condition).
+        </p>
       </v-card-text>
       <v-card-actions
         ><v-spacer /><v-btn

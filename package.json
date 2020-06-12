@@ -1,7 +1,7 @@
 {
   "name": "iam-webui",
   "version": "1.0.0",
-  "description": "Citadel IAM web UI",
+  "description": "Kadisoka IAM web UI",
   "author": "Fahrezal Effendi",
   "private": true,
   "scripts": {
