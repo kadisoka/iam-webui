@@ -3,7 +3,7 @@
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <v-col style="max-width: 480px">
+          <v-col style="max-width: 480px;">
             <header>
               <span class="app-logo"
                 ><a href="/">{{ $appCore.appName }}</a></span

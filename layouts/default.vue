@@ -1,7 +1,7 @@
 <template>
   <v-app class="default-layout">
     <v-app-bar :clipped-left="clipped" fixed flat app>
-      <a href="/" class="app-logo"><v-toolbar-title v-text="title"/></a>
+      <a href="/" class="app-logo"><v-toolbar-title v-text="title" /></a>
       <v-spacer />
       <v-menu left bottom>
         <template v-slot:activator="{ on, attrs }">

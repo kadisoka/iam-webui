@@ -1,6 +1,6 @@
 import qs from 'querystring'
 
-export default function({ app, route, redirect }) {
+export default function ({ app, route, redirect }) {
   if (!app.$iamClient.isLoggedIn()) {
     let queryStr = ''
     if (route.query.client_id) {
