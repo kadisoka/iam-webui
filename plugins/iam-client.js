@@ -1,24 +1,22 @@
 import qs from 'querystring'
 
-export default ({ app }, inject) => {
+export default ({ $config, $axios, store }, inject) => {
   const iamClient = {
-    restBaseUrl: 'http://localhost:11121/rest/v1',
-    clientId: 'CUA0T11xq3e',
-    clientSecret: 'RArhJhZIfBWHlfjcA2_FSw',
+    restBaseUrl: $config.iamClient.restBaseUrl,
+    clientId: $config.iamClient.clientId,
+    clientSecret: $config.iamClient.clientSecret,
 
     getAccountIdentifier() {
-      return app.store.state.iam.accountIdentifier
+      return store.state.iam.accountIdentifier
     },
 
     isWaitingTerminalAuthorizationConfirmation() {
-      return (
-        !!app.store.state.iam.terminalId && !app.store.state.iam.accessToken
-      )
+      return !!store.state.iam.terminalId && !store.state.iam.accessToken
     },
 
     startTerminalAuthorization(accountIdentifier, verificationMethods) {
       return new Promise((resolve, reject) => {
-        app.$axios
+        $axios
           .$post(
             this.restBaseUrl + '/terminals/register',
             {
@@ -33,7 +31,7 @@ export default ({ app }, inject) => {
             }
           )
           .then((resp) => {
-            app.store.commit('iam/startTerminalRegistration', {
+            store.commit('iam/startTerminalRegistration', {
               terminalId: resp.terminal_id,
               accountIdentifier
             })
@@ -56,12 +54,12 @@ export default ({ app }, inject) => {
 
     confirmTerminalAuthorization(otp) {
       return new Promise((resolve, reject) => {
-        app.$axios
+        $axios
           .$post(
             this.restBaseUrl + '/oauth/token',
             qs.stringify({
               grant_type: 'authorization_code',
-              code: 'otp:' + app.store.state.iam.terminalId + ':' + otp
+              code: 'otp:' + store.state.iam.terminalId + ':' + otp
             }),
             {
               auth: {
@@ -72,11 +70,11 @@ export default ({ app }, inject) => {
           )
           .then(
             (tokenResp) => {
-              app.store.commit('iam/storeAccessToken', tokenResp.access_token)
+              store.commit('iam/storeAccessToken', tokenResp.access_token)
 
               this.fetchUserInfo().then(
                 (userInfoResp) => {
-                  app.store.commit('iam/updateUserInfo', userInfoResp)
+                  store.commit('iam/updateUserInfo', userInfoResp)
                   resolve()
                 },
                 (err) => {
@@ -105,14 +103,12 @@ export default ({ app }, inject) => {
     },
     fetchUserInfo() {
       // TODO: ensure we have valid access token
-      app.$axios.setToken(app.store.state.iam.accessToken, 'Bearer')
-      return app.$axios.$get(
-        this.restBaseUrl + '/users/me/openidconnect-userinfo'
-      )
+      $axios.setToken(store.state.iam.accessToken, 'Bearer')
+      return $axios.$get(this.restBaseUrl + '/users/me/openidconnect-userinfo')
     },
 
     isLoggedIn() {
-      return !!app.store.state.iam.accessToken
+      return !!store.state.iam.accessToken
     }
   }
 

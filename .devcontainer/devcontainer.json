@@ -14,7 +14,8 @@
     "hikerpig.vetur"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [3000],
+  //"forwardPorts": [3000],
+  "appPort": ["3100:3000"],
   "runArgs": ["--memory=2g"]
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "yarn install",
