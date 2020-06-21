@@ -7,9 +7,13 @@ const routeBasePath = '/kadisoka-iam-webui-base-path'
 
 export default {
   build: {
-    optimizeCSS: true
+    optimizeCSS: true,
+    extractCSS: true
   },
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    ['@nuxtjs/vuetify', { treeShake: true }]
+  ],
   css: ['~/assets/app.scss'],
   head: {
     titleTemplate: '%s – {:[ .AppName ]:}',

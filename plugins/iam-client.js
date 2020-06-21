@@ -6,6 +6,10 @@ export default ({ $config, $axios, store }, inject) => {
     clientId: $config.iamClient.clientId,
     clientSecret: $config.iamClient.clientSecret,
 
+    clientAuth() {
+      return { username: this.clientId, password: this.clientSecret }
+    },
+
     getAccountIdentifier() {
       return store.state.iam.accountIdentifier
     },
@@ -23,12 +27,7 @@ export default ({ $config, $axios, store }, inject) => {
               verification_methods: verificationMethods ?? ['none'],
               verification_resource_name: accountIdentifier
             },
-            {
-              auth: {
-                username: this.clientId,
-                password: this.clientSecret
-              }
-            }
+            { auth: this.clientAuth() }
           )
           .then((resp) => {
             store.commit('iam/startTerminalRegistration', {
@@ -56,17 +55,12 @@ export default ({ $config, $axios, store }, inject) => {
       return new Promise((resolve, reject) => {
         $axios
           .$post(
-            this.restBaseUrl + '/oauth/token',
+            this.restBaseUrl + '/oauth2/token',
             qs.stringify({
               grant_type: 'authorization_code',
               code: 'otp:' + store.state.iam.terminalId + ':' + otp
             }),
-            {
-              auth: {
-                username: this.clientId,
-                password: this.clientSecret
-              }
-            }
+            { auth: this.clientAuth() }
           )
           .then(
             (tokenResp) => {
